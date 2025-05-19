@@ -1,11 +1,29 @@
-'use client';
+"use client";
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { User } from "@/context/auth-context";
 import dynamic from "next/dynamic";
 
 const Map = dynamic(() => import("./map"), { ssr: false });
+
+// ✅ Define the correct User type based on JSONPlaceholder structure
+type User = {
+  id: number;
+  name: string;
+  username: string;
+  email: string;
+  phone: string;
+  address: {
+    street: string;
+    suite: string;
+    city: string;
+    zipcode: string;
+    geo: {
+      lat: string;
+      lng: string;
+    };
+  };
+};
 
 export default function DeveloperProfilePage() {
   const { id } = useParams();
@@ -28,7 +46,9 @@ export default function DeveloperProfilePage() {
       <p className="text-muted-foreground">Username: {user.username}</p>
       <p>Email: {user.email}</p>
       <p>Phone: {user.phone}</p>
-      <p>Address: {user.address.street}, {user.address.city}</p>
+      <p>
+        Address: {user.address.street}, {user.address.city}
+      </p>
       <Map lat={lat} lng={lng} />
     </div>
   );
