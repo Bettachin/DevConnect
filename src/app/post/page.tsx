@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 
 type CommentType = {
@@ -53,34 +53,13 @@ const fakePosts: PostType[] = [
     likedByUser: false,
     comments: [],
   },
+  // Add more fake posts here
 ];
 
-// Helper: generate avatar URL from username (using DiceBear)
-const getAvatarUrl = (username: string) =>
-  `https://avatars.dicebear.com/api/initials/${encodeURIComponent(
-    username
-  )}.svg`;
-
 export default function PublicPostsPage() {
-  const [posts, setPosts] = useState<PostType[]>([]);
+  const [posts, setPosts] = useState<PostType[]>(fakePosts);
 
-  useEffect(() => {
-    // Load posts from localStorage, parse or empty array
-    const storedPostsRaw = localStorage.getItem("posts");
-    const storedPosts = storedPostsRaw ? JSON.parse(storedPostsRaw) : [];
-
-    // Map localStorage posts to PostType with defaults for likes, comments
-    const localPosts: PostType[] = storedPosts.map((post: any) => ({
-      ...post,
-      likes: 0,
-      likedByUser: false,
-      comments: [],
-    }));
-
-    // Combine local posts (newest first) + fake posts
-    setPosts([...localPosts, ...fakePosts]);
-  }, []);
-
+  // Like toggle logic (can expand later)
   const toggleLike = (postId: number) => {
     setPosts((prev) =>
       prev.map((post) =>
@@ -105,14 +84,7 @@ export default function PublicPostsPage() {
           className="border rounded p-4 mb-6 bg-white shadow-sm"
         >
           <div className="flex justify-between items-center mb-2">
-            <div className="flex items-center gap-3">
-              <img
-                src={getAvatarUrl(post.username)}
-                alt={`${post.username} avatar`}
-                className="w-10 h-10 rounded-full border border-gray-300"
-              />
-              <h2 className="font-semibold">{post.username}</h2>
-            </div>
+            <h2 className="font-semibold">{post.username}</h2>
             <button
               onClick={() => toggleLike(post.id)}
               className={`font-semibold ${
