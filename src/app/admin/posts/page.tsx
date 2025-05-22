@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { MessageSquare, ThumbsUp } from "lucide-react";
+import Image from "next/image";
 
 interface Comment {
   id: number;
@@ -53,11 +54,15 @@ export default function AdminPostsPage() {
               </div>
               <p className="text-lg mb-2">{post.content}</p>
               {post.image && (
-                <img
-                  src={post.image}
-                  alt="Post image"
-                  className="rounded-lg w-full max-h-96 object-cover mb-4"
-                />
+                <div className="relative w-full h-96 mb-4">
+                  <Image
+                    src={post.image}
+                    alt="Post image"
+                    layout="fill"
+                    objectFit="cover"
+                    className="rounded-lg"
+                  />
+                </div>
               )}
               <div className="flex items-center gap-4 text-muted-foreground">
                 <ThumbsUp className="w-4 h-4" />
