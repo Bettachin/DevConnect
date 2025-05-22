@@ -17,12 +17,14 @@ export default function RegisterPage() {
   const map = useRef<mapboxgl.Map | null>(null);
   const marker = useRef<mapboxgl.Marker | null>(null);
 
+  // Added countryCode to state and initial value
   const [formData, setFormData] = useState({
     username: "",
     email: "",
     password: "",
     phone: "",
     address: "",
+    countryCode: "+63", // added this line
   });
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
@@ -31,19 +33,17 @@ export default function RegisterPage() {
   >([]);
   const [isDropdownVisible, setDropdownVisible] = useState(false);
 
-  // Initialize map on first render
   useEffect(() => {
     if (map.current || !mapContainer.current) return;
 
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
       style: "mapbox://styles/mapbox/streets-v11",
-      center: [121.0, 14.6], // Default center (e.g., Manila)
+      center: [121.0, 14.6],
       zoom: 10,
     });
   }, []);
 
-  // Fetch address suggestions from Mapbox API with coordinates
   const fetchSuggestions = async (query: string) => {
     if (!query) {
       setSuggestions([]);
@@ -57,7 +57,6 @@ export default function RegisterPage() {
       );
       const data = await res.json();
       if (data.features) {
-        // store full feature (place_name + coordinates)
         setSuggestions(data.features);
       }
     } catch (err) {
@@ -73,7 +72,6 @@ export default function RegisterPage() {
     setDropdownVisible(true);
   };
 
-  // When user clicks a suggestion
   const handleSuggestionClick = (suggestion: {
     place_name: string;
     center: [number, number];
@@ -82,14 +80,12 @@ export default function RegisterPage() {
     setSuggestions([]);
     setDropdownVisible(false);
 
-    // Center map and add marker
     if (map.current) {
       map.current.flyTo({
         center: suggestion.center,
         zoom: 14,
       });
 
-      // Add or move marker
       if (marker.current) {
         marker.current.setLngLat(suggestion.center);
       } else {
@@ -172,47 +168,46 @@ export default function RegisterPage() {
           />
         </div>
         <div className="space-y-4">
-  <div>
-    <Label htmlFor="country">Country</Label>
-    <select
-      id="country"
-      className="w-full border rounded px-3 py-2"
-      onChange={(e) =>
-        setFormData({ ...formData, phone: "", countryCode: e.target.value })
-      }
-      value={formData.countryCode || "+63"}
-    >
-      <option value="+63">🇵🇭 Philippines (+63)</option>
-      <option value="+1">🇺🇸 USA (+1)</option>
-      <option value="+44">🇬🇧 UK (+44)</option>
-      {/* Add more countries as needed */}
-    </select>
-  </div>
+          <div>
+            <Label htmlFor="country">Country</Label>
+            <select
+              id="country"
+              className="w-full border rounded px-3 py-2"
+              onChange={(e) =>
+                setFormData({ ...formData, phone: "", countryCode: e.target.value })
+              }
+              value={formData.countryCode || "+63"}
+            >
+              <option value="+63">🇵🇭 Philippines (+63)</option>
+              <option value="+1">🇺🇸 USA (+1)</option>
+              <option value="+44">🇬🇧 UK (+44)</option>
+            </select>
+          </div>
 
-  <div>
-    <Label htmlFor="phone">Phone Number</Label>
-    <div className="flex">
-      <span className="flex items-center px-3 bg-gray-100 border border-r-0 rounded-l text-gray-700">
-        {formData.countryCode || "+63"}
-      </span>
-      <Input
-        id="phone"
-        type="tel"
-        inputMode="numeric"
-        pattern="[0-9]*"
-        placeholder="9123456789"
-        value={formData.phone}
-        onChange={(e) =>
-          setFormData({
-            ...formData,
-            phone: e.target.value.replace(/\D/g, ""),
-          })
-        }
-        className="rounded-l-none"
-      />
-    </div>
-  </div>
-</div>
+          <div>
+            <Label htmlFor="phone">Phone Number</Label>
+            <div className="flex">
+              <span className="flex items-center px-3 bg-gray-100 border border-r-0 rounded-l text-gray-700">
+                {formData.countryCode || "+63"}
+              </span>
+              <Input
+                id="phone"
+                type="tel"
+                inputMode="numeric"
+                pattern="[0-9]*"
+                placeholder="9123456789"
+                value={formData.phone}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    phone: e.target.value.replace(/\D/g, ""),
+                  })
+                }
+                className="rounded-l-none"
+              />
+            </div>
+          </div>
+        </div>
 
         <div className="relative">
           <Label>Address</Label>
@@ -251,16 +246,14 @@ export default function RegisterPage() {
             <AlertDescription>{successMessage}</AlertDescription>
           </Alert>
         )}
-      <div
-        ref={mapContainer}
-        className="w-full max-w-sm h-64 rounded-md border mt-4"
-      />
+        <div
+          ref={mapContainer}
+          className="w-full max-w-sm h-64 rounded-md border mt-4"
+        />
         <Button type="submit" className="w-full">
           Sign Up
         </Button>
       </form>
-
-      
     </main>
   );
 }
