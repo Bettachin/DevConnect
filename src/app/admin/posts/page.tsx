@@ -27,7 +27,8 @@ export default function AdminPostsPage() {
   const router = useRouter();
 
   useEffect(() => {
-    const storedPosts = JSON.parse(localStorage.getItem("posts") || "[]");
+    const stored = localStorage.getItem("posts");
+    const storedPosts: Post[] = stored ? JSON.parse(stored) : [];
     setPosts(storedPosts);
   }, []);
 
