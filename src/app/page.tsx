@@ -20,22 +20,22 @@ export default function HomePage() {
     {
       name: "Zedric Abejuela",
       role: "Frontend & Backend Develeper, Deployment, Repository",
-      img: "/team/alice.jpg",
+      img: "/team/zedric.jpg",
     },
     {
       name: "Gabriel Atanoso",
       role: "Details",
-      img: "/team/brian.jpg",
+      img: "/team/gabriel.jpg",
     },
     {
       name: "Nelia Meranda",
       role: "Details",
-      img: "/team/clara.jpg",
+      img: "/team/nelia.jpg",
     },
     {
       name: "Gerald Hachaso",
       role: "Details",
-      img: "/team/daniel.jpg",
+      img: "/team/gerald.jpg",
     },
   ];
 
@@ -43,7 +43,7 @@ export default function HomePage() {
     <main className="min-h-screen w-full bg-gradient-to-br from-gray-100 to-white py-20 px-6">
       {/* Welcome Section */}
       <section className="max-w-2xl mx-auto mb-16 text-center space-y-6 bg-white shadow-xl rounded-2xl p-10 border">
-        <h1 className="text-4xl font-bold">Welcome to DevConnect 🚀</h1>
+        <h1 className="text-4xl font-bold">Welcome to DevConnect <span className="text-5xl inline-block align-middle">🤝</span></h1>
         <p className="text-muted-foreground text-lg">
           Connect. Share. Collaborate. Start your journey with us.
         </p>
@@ -66,7 +66,7 @@ export default function HomePage() {
 
       {/* Meet the Makers Section */}
       <section className="max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-10">Meet the Makers 👨‍💻👩‍💻</h2>
+        <h2 className="text-3xl font-bold text-center mb-10">Meet the Makers</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {teamMembers.map((member) => (
             <Card key={member.name} className="hover:shadow-2xl transition-shadow">
