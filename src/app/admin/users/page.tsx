@@ -16,6 +16,14 @@ interface User {
   website?: string;
 }
 
+interface APIUser {
+  id: number;
+  name: string;
+  username: string;
+  email: string;
+  website?: string;
+}
+
 const predefinedUsers: User[] = [
   {
     id: 1001,
@@ -40,16 +48,14 @@ export default function AdminUsersPage() {
   const router = useRouter();
 
   useEffect(() => {
-    // Load from localStorage or use mock data
     const storedUser = localStorage.getItem("user");
     const mainUser = storedUser ? [JSON.parse(storedUser)] : [];
 
     const fetchUsers = async () => {
       const res = await fetch("https://jsonplaceholder.typicode.com/users");
-      const data = await res.json();
+      const data: APIUser[] = await res.json();
 
-      // Map fetched users to include avatar
-      const mappedData = data.map((user: any) => ({
+      const mappedData: User[] = data.map((user: APIUser) => ({
         id: user.id,
         name: user.name,
         username: user.username,
@@ -58,7 +64,6 @@ export default function AdminUsersPage() {
         website: user.website ? `https://${user.website}` : undefined,
       }));
 
-      // Combine predefined users, mainUser and fetched users, removing duplicates by username
       const combinedUsers = [
         ...predefinedUsers,
         ...mainUser,
