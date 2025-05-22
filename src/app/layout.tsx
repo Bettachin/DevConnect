@@ -1,14 +1,13 @@
-import { AuthProvider } from "@/context/auth-context";
-import LayoutShell from "@/components/layout-shell";
 import "./globals.css";
-import { Inter } from "next/font/google";
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import LayoutShell from "@/components/layout-shell";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "DevConnect",
-  description: "Developer directory and blogging platform",
+  description: "Developer Directory and Blog Platform",
 };
 
 export default function RootLayout({
@@ -19,9 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AuthProvider>
-          <LayoutShell>{children}</LayoutShell>
-        </AuthProvider>
+        <LayoutShell>{children}</LayoutShell>
       </body>
     </html>
   );

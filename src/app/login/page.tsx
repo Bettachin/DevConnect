@@ -17,16 +17,27 @@ export default function LoginPage() {
     e.preventDefault();
     setError("");
 
-    // ✅ First check for hardcoded user
+    // ✅ Check hardcoded user
     if (username === "Bettachin" && password === "12345678") {
       const fakeUser = {
-        id: 999,
+        id: 1,
         name: "Bettachin",
         username: "Bettachin",
-        email: "bettachin@example.com",
+        email: "zedric.abejuela@sorsu.edu.ph",
       };
       localStorage.setItem("user", JSON.stringify(fakeUser));
-      router.push("/dashboard");
+      router.push("/home"); // Redirect to /home
+      return;
+    }
+    if (username === "Zedric" && password === "12345678") {
+      const fakeUser = {
+        id: 2,
+        name: "Zedric",
+        username: "Zedric",
+        email: "zedric.abejuela@sorsu.edu.ph",
+      };
+      localStorage.setItem("user", JSON.stringify(fakeUser));
+      router.push("/home"); // Redirect to /home
       return;
     }
 
@@ -43,7 +54,7 @@ export default function LoginPage() {
 
       if (password === "12345678") {
         localStorage.setItem("user", JSON.stringify(matchedUser));
-        router.push("/dashboard");
+        router.push("/home"); // Redirect to /home
       } else {
         setError("Invalid password.");
       }

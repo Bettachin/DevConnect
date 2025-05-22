@@ -171,15 +171,49 @@ export default function RegisterPage() {
             placeholder="********"
           />
         </div>
-        <div>
-          <Label>Phone Number</Label>
-          <Input
-            type="tel"
-            value={formData.phone}
-            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-            placeholder="123-456-7890"
-          />
-        </div>
+        <div className="space-y-4">
+  <div>
+    <Label htmlFor="country">Country</Label>
+    <select
+      id="country"
+      className="w-full border rounded px-3 py-2"
+      onChange={(e) =>
+        setFormData({ ...formData, phone: "", countryCode: e.target.value })
+      }
+      value={formData.countryCode || "+63"}
+    >
+      <option value="+63">🇵🇭 Philippines (+63)</option>
+      <option value="+1">🇺🇸 USA (+1)</option>
+      <option value="+44">🇬🇧 UK (+44)</option>
+      {/* Add more countries as needed */}
+    </select>
+  </div>
+
+  <div>
+    <Label htmlFor="phone">Phone Number</Label>
+    <div className="flex">
+      <span className="flex items-center px-3 bg-gray-100 border border-r-0 rounded-l text-gray-700">
+        {formData.countryCode || "+63"}
+      </span>
+      <Input
+        id="phone"
+        type="tel"
+        inputMode="numeric"
+        pattern="[0-9]*"
+        placeholder="9123456789"
+        value={formData.phone}
+        onChange={(e) =>
+          setFormData({
+            ...formData,
+            phone: e.target.value.replace(/\D/g, ""),
+          })
+        }
+        className="rounded-l-none"
+      />
+    </div>
+  </div>
+</div>
+
         <div className="relative">
           <Label>Address</Label>
           <Input
