@@ -8,7 +8,29 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
-import { LayoutDashboard, Users, FileText, MessageCircle, Globe, LogOut } from "lucide-react";
+import {
+  LayoutDashboard,
+  Users,
+  FileText,
+  MessageCircle,
+  Globe,
+  LogOut,
+} from "lucide-react";
+
+interface Comment {
+  id: number;
+  postId: number;
+  username: string;
+  text: string;
+}
+
+interface Post {
+  id: number;
+  username: string;
+  content: string;
+  image?: string;
+  comments?: Comment[];
+}
 
 export default function AdminPage() {
   const [email, setEmail] = useState("");
@@ -77,9 +99,9 @@ export default function AdminPage() {
 
   // Dummy/fake data
   const users = Array(11).fill({}); // hardcoded 11 users
-  const posts = JSON.parse(localStorage.getItem("posts") || "[]");
+  const posts: Post[] = JSON.parse(localStorage.getItem("posts") || "[]");
   const commentCount = posts.reduce(
-    (acc: number, post: any) => acc + (post.comments?.length || 0),
+    (acc: number, post: Post) => acc + (post.comments?.length || 0),
     0
   );
 
