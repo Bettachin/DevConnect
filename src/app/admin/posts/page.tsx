@@ -34,51 +34,72 @@ export default function AdminPostsPage() {
   }, []);
 
   return (
-    <main className="max-w-4xl mx-auto p-6 space-y-6">
-      <div className="flex justify-between items-center mb-4">
-        <h1 className="text-3xl font-bold">All Posts & Comments</h1>
-        <Button onClick={() => router.push("/admin")}>← Back to Admin</Button>
+    <main className="max-w-5xl mx-auto p-8 space-y-8">
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-4xl font-extrabold tracking-tight">All Posts & Comments</h1>
+        <Button variant="outline" onClick={() => router.push("/admin")}>
+          ← Back to Admin
+        </Button>
       </div>
 
       {posts.length === 0 ? (
-        <p className="text-muted-foreground">No posts available.</p>
+        <p className="text-center text-muted-foreground text-lg">No posts available.</p>
       ) : (
         posts.map((post) => (
-          <Card key={post.id} className="space-y-4">
-            <CardContent>
-              <div className="flex items-center gap-4 mb-2">
-                <Avatar>
-                  <AvatarFallback>{post.username[0]}</AvatarFallback>
+          <Card key={post.id} className="shadow-lg hover:shadow-xl transition-shadow">
+            <CardContent className="space-y-5">
+              {/* User info */}
+              <div className="flex items-center gap-4">
+                <Avatar className="w-12 h-12">
+                  <AvatarFallback className="text-xl">{post.username[0].toUpperCase()}</AvatarFallback>
                 </Avatar>
-                <p className="font-semibold">{post.username}</p>
+                <p className="text-xl font-semibold">{post.username}</p>
               </div>
-              <p className="text-lg mb-2">{post.content}</p>
+
+              {/* Post content */}
+              <p className="text-lg leading-relaxed whitespace-pre-wrap">{post.content}</p>
+
+              {/* Post image */}
               {post.image && (
-                <div className="relative w-full h-96 mb-4">
+                <div className="relative w-full h-[24rem] rounded-lg overflow-hidden shadow-md">
                   <Image
                     src={post.image}
-                    alt="Post image"
-                    layout="fill"
-                    objectFit="cover"
-                    className="rounded-lg"
+                    alt={`Image posted by ${post.username}`}
+                    fill
+                    className="object-cover"
+                    priority
                   />
                 </div>
               )}
-              <div className="flex items-center gap-4 text-muted-foreground">
-                <ThumbsUp className="w-4 h-4" />
-                <MessageSquare className="w-4 h-4" /> {post.comments?.length || 0} Comments
+
+              {/* Post meta */}
+              <div className="flex items-center gap-6 text-muted-foreground text-sm font-medium select-none">
+                <div className="flex items-center gap-1">
+                  <ThumbsUp className="w-5 h-5" />
+                  <span>Likes</span> {/* You can add like count here */}
+                </div>
+                <div className="flex items-center gap-1">
+                  <MessageSquare className="w-5 h-5" />
+                  <span>{post.comments?.length ?? 0} Comments</span>
+                </div>
               </div>
 
+              {/* Comments section */}
               {post.comments && post.comments.length > 0 && (
-                <div className="mt-4 space-y-2">
-                  <p className="font-medium">Comments:</p>
-                  {post.comments.map((comment) => (
-                    <div key={comment.id} className="border rounded p-2">
-                      <p className="font-semibold text-sm">{comment.username}</p>
-                      <p className="text-sm">{comment.text}</p>
-                    </div>
-                  ))}
-                </div>
+                <section className="pt-4 border-t border-muted-foreground/30 space-y-4">
+                  <h3 className="text-lg font-semibold">Comments</h3>
+                  <div className="space-y-3 max-h-64 overflow-y-auto pr-2">
+                    {post.comments.map((comment) => (
+                      <div
+                        key={comment.id}
+                        className="bg-muted p-3 rounded-md shadow-sm"
+                      >
+                        <p className="font-semibold text-sm">{comment.username}</p>
+                        <p className="text-sm leading-snug whitespace-pre-wrap">{comment.text}</p>
+                      </div>
+                    ))}
+                  </div>
+                </section>
               )}
             </CardContent>
           </Card>

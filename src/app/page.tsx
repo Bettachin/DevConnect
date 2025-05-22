@@ -3,6 +3,8 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function HomePage() {
   const router = useRouter();
@@ -14,29 +16,74 @@ export default function HomePage() {
     }
   }, [router]);
 
+  const teamMembers = [
+    {
+      name: "Zedric Abejuela",
+      role: "Frontend & Backend Develeper, Deployment, Repository",
+      img: "/team/alice.jpg",
+    },
+    {
+      name: "Gabriel Atanoso",
+      role: "Details",
+      img: "/team/brian.jpg",
+    },
+    {
+      name: "Nelia Meranda",
+      role: "Details",
+      img: "/team/clara.jpg",
+    },
+    {
+      name: "Gerald Hachaso",
+      role: "Details",
+      img: "/team/daniel.jpg",
+    },
+  ];
+
   return (
-    <main className="min-h-screen flex items-center justify-center px-4">
-      <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-xl p-10 max-w-md w-full text-center space-y-6 text-black animate-fade-in">
+    <main className="min-h-screen w-full bg-gradient-to-br from-gray-100 to-white py-20 px-6">
+      {/* Welcome Section */}
+      <section className="max-w-2xl mx-auto mb-16 text-center space-y-6 bg-white shadow-xl rounded-2xl p-10 border">
         <h1 className="text-4xl font-bold">Welcome to DevConnect 🚀</h1>
-        <p className="text-black/90">
-          Please log in or register to access the website.
+        <p className="text-muted-foreground text-lg">
+          Connect. Share. Collaborate. Start your journey with us.
         </p>
         <div className="flex justify-center gap-4 pt-4">
           <Button
-            className="bg-white text-black hover:bg-gray-100 font-semibold px-6"
+            className="px-6 py-2"
             onClick={() => router.push("/login")}
           >
             Login
           </Button>
           <Button
             variant="outline"
-            className="border-white text-black hover:bg-black/10 font-semibold px-6"
+            className="px-6 py-2"
             onClick={() => router.push("/register")}
           >
             Register
           </Button>
         </div>
-      </div>
+      </section>
+
+      {/* Meet the Makers Section */}
+      <section className="max-w-6xl mx-auto">
+        <h2 className="text-3xl font-bold text-center mb-10">Meet the Makers 👨‍💻👩‍💻</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {teamMembers.map((member) => (
+            <Card key={member.name} className="hover:shadow-2xl transition-shadow">
+              <CardHeader className="flex flex-col items-center">
+                <Avatar className="w-24 h-24">
+                  <AvatarImage src={member.img} alt={member.name} />
+                  <AvatarFallback>{member.name.slice(0, 2).toUpperCase()}</AvatarFallback>
+                </Avatar>
+                <CardTitle className="mt-4 text-center">{member.name}</CardTitle>
+              </CardHeader>
+              <CardContent className="text-center text-muted-foreground">
+                {member.role}
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
     </main>
   );
 }
