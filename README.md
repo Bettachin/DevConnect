@@ -106,6 +106,7 @@ Email: admin@admin.com
 Password: admin123
 
 in https://dev-connect-green.vercel.app/admin
+
 You can configure this in the Supabase user table or hardcode the credentials.
 
 📄 License
