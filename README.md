@@ -57,6 +57,19 @@ npm run dev or yarn dev
 
 Visit: http://localhost:3000
 
+# 📦 ShadCN Components Used
+Button – Custom-styled buttons across forms and nav
+
+Input, Label – Form inputs for login/register
+
+Alert, AlertDescription, AlertTitle – For feedback messages
+
+Card, Avatar, DropdownMenu, Sheet – Used in dashboards and navigation
+
+Textarea, Dialog, Tooltip, etc. – Enhances UX for forms and interactions
+
+All components are themeable and consistent with Tailwind-based dark/light modes.
+
 # 🧪 Supabase Setup
 Create a Supabase project at supabase.com
 
@@ -92,6 +105,7 @@ Email: admin@admin.com
 
 Password: admin123
 
+in https://dev-connect-green.vercel.app/admin
 You can configure this in the Supabase user table or hardcode the credentials.
 
 📄 License
