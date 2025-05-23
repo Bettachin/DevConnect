@@ -47,9 +47,13 @@ Create a .env.local file and add the following:
 env
 Copy
 Edit
+
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+
 NEXT_PUBLIC_MAPBOX_TOKEN=your_mapbox_token
+
 🔒 Keep these values private and never commit them to version control.
 
 # 4. Run locally
