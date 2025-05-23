@@ -39,10 +39,9 @@ cd devconnect
 bash
 Copy
 Edit
-npm install
-# or
-yarn install
-3. Environment Variables
+npm install or yarn install
+
+#3. Environment Variables
 Create a .env.local file and add the following:
 
 env
