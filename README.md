@@ -30,23 +30,17 @@ Deployment: Vercel
 
  # 🛠️ Installation
  # 1. Clone the repo
-bash
-Copy
-Edit
+
 git clone https://github.com/yourusername/devconnect.git
+
 cd devconnect
+
 # 2. Install dependencies
-bash
-Copy
-Edit
+
 npm install or yarn install
 
 # 3. Environment Variables
-Create a .env.local file and add the following:
-
-env
-Copy
-Edit
+Create a .env file and add the following:
 
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
 
@@ -58,9 +52,9 @@ NEXT_PUBLIC_MAPBOX_TOKEN=your_mapbox_token
 
 # 4. Run locally
 bash
-Copy
-Edit
+
 npm run dev or yarn dev
+
 Visit: http://localhost:3000
 
 # 🧪 Supabase Setup
@@ -80,13 +74,15 @@ Sign up at mapbox.com
 Generate an access token and add it to .env.local as NEXT_PUBLIC_MAPBOX_TOKEN
 
 # 📁 Folder Structure (Summary)
-arduino
-Copy
-Edit
+
 /components      // Reusable UI components
+
 /context         // Auth context
+
 /pages           // Route pages
+
 /styles          // Tailwind + global styles
+
 /lib             // Supabase and utility functions
 
 # 👮 Admin Access
