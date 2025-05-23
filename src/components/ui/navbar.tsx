@@ -116,7 +116,7 @@ export default function Navbar() {
           show={!hideHomePaths.includes(pathname)}
         />
         <NavButton
-          href="/home"
+          href="/"
           label="Back to Home"
           icon={<Home className="w-4 h-4" />}
           show={isAuthPage}
