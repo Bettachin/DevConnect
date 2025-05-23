@@ -29,12 +29,12 @@ export default function HomePage() {
     },
     {
       name: "Nelia Meranda",
-      role: "Details",
+      role: "User Interface",
       img: "/team/nelia.jpg",
     },
     {
       name: "Gerald Hachaso",
-      role: "Testing",
+      role: "Assisted in Back-End",
       img: "/team/gerald.jpg",
     },
   ];
