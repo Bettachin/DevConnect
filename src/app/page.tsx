@@ -24,7 +24,7 @@ export default function HomePage() {
     },
     {
       name: "Gabriel Atanoso",
-      role: "Details",
+      role: "Analyst",
       img: "/team/gabriel.jpg",
     },
     {
@@ -34,7 +34,7 @@ export default function HomePage() {
     },
     {
       name: "Gerald Hachaso",
-      role: "Details",
+      role: "Testing",
       img: "/team/gerald.jpg",
     },
   ];
