@@ -1,10 +1,10 @@
-📘 DevConnect
+# 📘 DevConnect
 DevConnect is a modern developer directory and blogging platform built with Next.js, Tailwind CSS, ShadCN UI, and Supabase. It allows developers to register, log in, create posts, comment, and connect with others. Admins have special access to monitor and manage the community.
 
-🌐 Live Demo
+# 🌐 Live Demo
 👉 View Live on Vercel(https://dev-connect-green.vercel.app/)
 
-📌 Features
+# 📌 Features
 🧑‍💻 Developer authentication (register/login/logout via Supabase)
 
 📝 Post creation and listing
@@ -19,7 +19,7 @@ DevConnect is a modern developer directory and blogging platform built with Next
 
 🎨 Responsive, gradient-themed UI with Tailwind + ShadCN
 
-🚀 Tech Stack
+# 🚀 Tech Stack
 Frontend: Next.js 14, TypeScript, Tailwind CSS, ShadCN UI
 
 Backend/Auth: Supabase
@@ -28,20 +28,20 @@ Maps: Mapbox API
 
 Deployment: Vercel
 
-🛠️ Installation
-1. Clone the repo
+ # 🛠️ Installation
+ # 1. Clone the repo
 bash
 Copy
 Edit
 git clone https://github.com/yourusername/devconnect.git
 cd devconnect
-2. Install dependencies
+# 2. Install dependencies
 bash
 Copy
 Edit
 npm install or yarn install
 
-#3. Environment Variables
+# 3. Environment Variables
 Create a .env.local file and add the following:
 
 env
@@ -52,16 +52,14 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 NEXT_PUBLIC_MAPBOX_TOKEN=your_mapbox_token
 🔒 Keep these values private and never commit them to version control.
 
-4. Run locally
+# 4. Run locally
 bash
 Copy
 Edit
-npm run dev
-# or
-yarn dev
+npm run dev or yarn dev
 Visit: http://localhost:3000
 
-🧪 Supabase Setup
+# 🧪 Supabase Setup
 Create a Supabase project at supabase.com
 
 Enable Email Auth
@@ -72,12 +70,12 @@ username, phone, address
 
 Enable Row Level Security if needed
 
-🗺️ Mapbox Setup
+# 🗺️ Mapbox Setup
 Sign up at mapbox.com
 
 Generate an access token and add it to .env.local as NEXT_PUBLIC_MAPBOX_TOKEN
 
-📁 Folder Structure (Summary)
+# 📁 Folder Structure (Summary)
 arduino
 Copy
 Edit
@@ -86,7 +84,8 @@ Edit
 /pages           // Route pages
 /styles          // Tailwind + global styles
 /lib             // Supabase and utility functions
-👮 Admin Access
+
+# 👮 Admin Access
 To access the admin dashboard, log in with:
 
 Email: admin@admin.com
