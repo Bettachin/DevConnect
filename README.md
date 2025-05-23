@@ -2,7 +2,7 @@
 DevConnect is a modern developer directory and blogging platform built with Next.js, Tailwind CSS, ShadCN UI, and Supabase. It allows developers to register, log in, create posts, comment, and connect with others. Admins have special access to monitor and manage the community.
 
 🌐 Live Demo
-👉 View Live on Vercel
+👉 View Live on Vercel(https://dev-connect-green.vercel.app/)
 
 📌 Features
 🧑‍💻 Developer authentication (register/login/logout via Supabase)
